@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NSAT — Reports</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">NS<span>AT</span></div>
+      <nav class="nav">
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/scan.html">New Scan</a>
+        <a class="active" href="/reports.html">Reports</a>
+        <a href="/about.html">About</a>
+      </nav>
+      <div class="sidebar-footer"><button id="logout" class="ghost" style="width:100%">Sign out</button></div>
+    </aside>
+
+    <div class="content">
+      <header class="topbar">
+        <div><h1>Reports</h1><p>Scan history stored in SQLite for this analyst account</p></div>
+        <span class="badge mono" id="who">—</span>
+      </header>
+
+      <div class="page">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <h3>Audit history (<span id="report-count">0</span>)</h3>
+            <button id="clear-history" class="ghost">Clear history</button>
+          </div>
+          <table class="mt">
+            <thead><tr><th>Target</th><th>Date</th><th>Status</th><th>Open ports</th><th>Risk</th><th>Report</th></tr></thead>
+            <tbody id="reports-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>initShell(); initReports();</script>
+</body>
+</html>

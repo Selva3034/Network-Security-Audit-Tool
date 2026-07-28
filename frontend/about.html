@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NSAT — About</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">NS<span>AT</span></div>
+      <nav class="nav">
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/scan.html">New Scan</a>
+        <a href="/reports.html">Reports</a>
+        <a class="active" href="/about.html">About</a>
+      </nav>
+      <div class="sidebar-footer"><button id="logout" class="ghost" style="width:100%">Sign out</button></div>
+    </aside>
+
+    <div class="content">
+      <header class="topbar">
+        <div><h1>About NSAT</h1><p>Network Security Audit Tool — final year project</p></div>
+        <span class="badge mono" id="who">—</span>
+      </header>
+
+      <div class="page">
+        <div class="card">
+          <h2>A lightweight auditing console for small networks</h2>
+          <p class="muted mt">NSAT combines three classic security tasks — discovering whether a host is
+            alive, enumerating the services it exposes, and judging how risky that exposure is — into
+            one workflow that produces a single, explainable score and a downloadable PDF report.</p>
+        </div>
+
+        <div class="grid grid-2 mt">
+          <div class="card"><h3>1. Host Discovery</h3><p class="mono" style="color:var(--primary);font-size:12px">Scapy</p>
+            <p class="muted mt">Sends an ARP request on the local segment and falls back to an ICMP echo
+              probe. A reply within the timeout marks the host as online and records latency.</p></div>
+          <div class="card"><h3>2. Port Scanning</h3><p class="mono" style="color:var(--primary);font-size:12px">python-nmap</p>
+            <p class="muted mt">Runs a service-version scan (-sV) against a curated list of commonly
+              abused TCP ports and returns each open port with its service and banner.</p></div>
+          <div class="card"><h3>3. Risk Assessment</h3><p class="mono" style="color:var(--primary);font-size:12px">Custom algorithm</p>
+            <p class="muted mt">Each open service carries a weight based on how dangerous it is to
+              expose. Weights are summed, an exposure penalty is added, and the result is capped at 100.</p></div>
+          <div class="card"><h3>Scoring formula</h3>
+            <pre class="mono muted mt" style="font-size:12px;white-space:pre-wrap">score = min(100, Σ weight(service) + 3 × max(0, ports − 3))
+
+0        Secure
+1–20     Low
+21–45    Moderate
+46–70    High
+71–100   Critical</pre></div>
+        </div>
+
+        <div class="card mt">
+          <h3>Technology stack</h3>
+          <p class="muted mt">Frontend: HTML5, CSS3, vanilla JavaScript, Chart.js ·
+            Backend: Python 3 + Flask · Database: SQLite ·
+            Scanning: Scapy, python-nmap · Reporting: ReportLab</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>initShell();</script>
+</body>
+</html>

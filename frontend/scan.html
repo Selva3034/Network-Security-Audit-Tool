@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NSAT — New Scan</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">NS<span>AT</span></div>
+      <nav class="nav">
+        <a href="/dashboard.html">Dashboard</a>
+        <a class="active" href="/scan.html">New Scan</a>
+        <a href="/reports.html">Reports</a>
+        <a href="/about.html">About</a>
+      </nav>
+      <div class="sidebar-footer"><button id="logout" class="ghost" style="width:100%">Sign out</button></div>
+    </aside>
+
+    <div class="content">
+      <header class="topbar">
+        <div><h1>New Scan</h1><p>Host discovery, port enumeration and risk assessment</p></div>
+        <span class="badge mono" id="who">—</span>
+      </header>
+
+      <div class="page grid grid-2">
+        <div class="card" style="align-self:start">
+          <form id="scan-form">
+            <label for="target">Target IP address</label>
+            <input id="target" name="target" class="mono" value="192.168.1.10" maxlength="15" required />
+            <p class="muted" style="font-size:12px;margin:6px 0 14px">Only scan hosts you own or are authorised to test.</p>
+            <button type="submit" style="width:100%">Start scan</button>
+          </form>
+          <div id="loader" style="display:none;align-items:center;gap:10px;margin-top:14px">
+            <div class="spinner"></div><span class="muted" style="font-size:13px">Scanning target…</span>
+          </div>
+          <div id="scan-msg"></div>
+          <div class="card mt" style="background:var(--panel-2)">
+            <strong style="font-size:13px">Modules executed</strong>
+            <p class="muted" style="font-size:12px;margin-top:6px">1. Host discovery — Scapy ARP/ICMP</p>
+            <p class="muted" style="font-size:12px">2. Port scanning — python-nmap</p>
+            <p class="muted" style="font-size:12px">3. Risk assessment — weighted scoring</p>
+          </div>
+        </div>
+
+        <div id="results"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>initShell(); initScan();</script>
+</body>
+</html>
